@@ -28,12 +28,7 @@ class UserLoginSerializer(serializers.Serializer):
 
 class TaskSerializer(serializers.ModelSerializer):
 	title = serializers.CharField(max_length=255)
-
 	class Meta:
 		model = Task
-		fields = ('title',)
+		fields = ('id', 'user', 'title', 'created_on', 'updated_on',)
 
-		def create(self, validated_data):
-			user_id = validated_data.pop('user_id')  # Extract user_id from validated data
-			task = Task.objects.create(user_id=user_id, **validated_data)
-			return task

@@ -32,6 +32,8 @@ pip install -r requirements.txt
 
 * `/api/user/tasks/add/`
 * `/api/user/tasks/view/`
+* `/api/user/tasks/edit/`
+* `/api/user/tasks/delete/`
 
 ## Example usage
 

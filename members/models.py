@@ -1,7 +1,7 @@
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
-from django.core.exceptions import ValidationError
 
 
 class CustomUserManager(BaseUserManager):
@@ -49,14 +49,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 class Task(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	title = models.CharField(max_length=255)
-	is_completed = models.BooleanField(default=False)
-	is_archived = models.BooleanField(default=False)
 	is_deleted = models.BooleanField(default=False)
+	created_on = models.DateTimeField(default=timezone.now().strftime("%Y-%m-%d %H:%M:%S"))
+	updated_on = models.DateTimeField(null=True)
 
 	def __str__(self):
 		return self.title
-	
-	def clean(self):
-		if self.is_archived and self.is_deleted:
-			raise ValidationError('Only one of the two checkboxes can be checked (is_archived or is_deleted).')
-		return super().clean()

@@ -14,6 +14,8 @@ urlpatterns = [
 	path('user/', UserViewAPI.as_view()),
 	path('user/logout/', UserLogoutViewAPI.as_view()),
     
-	path('user/tasks/view/', UserEntryTask.as_view(), name='view_user_task'),
-	path('user/tasks/add/', UserEntryTask.as_view(), name='add_user_task'),
+	path('user/tasks/view/', UserEntryTask.as_view()),
+	path('user/tasks/add/', UserEntryTask.as_view()),
+    path('user/tasks/edit/<int:pk>/', UserEntryTask.as_view()),
+    path('user/tasks/delete/<int:pk>/', UserEntryTask.as_view()),
 ]
