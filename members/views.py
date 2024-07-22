@@ -34,7 +34,7 @@ class UserRegistrationAPIView(APIView):
 			return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 		
 		except Exception as e:
-			print(f"An error occured: {e}", status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+			return Response(f"An error occured: {e}", status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class UserLoginAPIView(APIView):
